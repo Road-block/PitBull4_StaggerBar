@@ -1,0 +1,7 @@
+package-as: PitBull4_StaggerBar
+enable-nolib-creation: no
+
+ignore:
+  - .gitignore
+  - .pkgmeta
+  - README.md
