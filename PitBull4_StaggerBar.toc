@@ -1,0 +1,11 @@
+## Interface: 50500
+## Title: PitBull4 |r[|cffeda55fStagger bar|r]
+## Notes: Show a bar for the current stagger amount for Brewmaster Monks.
+## Author: Basylle
+## X-ClassicAuthor: Roadblock
+## DefaultState: enabled
+## LoadOnDemand: 1
+## Dependencies: PitBull4
+## Version: v1.0.2
+
+load.xml
