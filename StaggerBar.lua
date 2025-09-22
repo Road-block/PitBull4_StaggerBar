@@ -10,6 +10,8 @@ if not PitBull4 then
 	error("PitBull4_StaggerBar requires PitBull4")
 end
 
+local UnitIsUnit = _G.UnitIsUnit
+
 -- CONSTANTS
 local EXAMPLE_VALUE = 0.55
 local DEFAULT_LIGHT_STAGGER_THRESHHOLD = 30
@@ -78,7 +80,8 @@ end
 
 function PitBull4_StaggerBar:GetValue(frame)
 	local spec = C_SpecializationInfo.GetSpecialization();
-	local visible = frame.unit == "player" and spec == SPEC_MONK_BREWMASTER;
+	local unit = frame.unit
+	local visible = unit and UnitIsUnit(unit,"player") and (spec == SPEC_MONK_BREWMASTER);
 
 	if not visible then
 		return nil
@@ -108,7 +111,7 @@ function PitBull4_StaggerBar:GetExampleColor(frame, value)
 end
 
 function PitBull4_StaggerBar:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "player" then
+	if UnitIsUnit(unit,"player") then
 		self:UpdatePlayerStaggerPercent()
 		self:UpdateForUnitID(unit)
 	end
@@ -139,8 +142,8 @@ function PitBull4_StaggerBar:UpdateThreshhold()
 end
 
 function PitBull4_StaggerBar:UpdatePlayerStaggerPercent()
-	local stagger = UnitStagger("Player")
-	local health = UnitHealthMax("Player")
+	local stagger = UnitStagger("player") or 0
+	local health = UnitHealthMax("player") or 100
 	if stagger > health then
 		stagger = health
 	end
